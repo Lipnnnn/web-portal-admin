@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import RoutesConfig from './config.js'
+import store from '@/store/index.js'
 
 const routes = [
   {
@@ -32,7 +33,7 @@ const router = createRouter({
 
 
 // 设置路由拦截，必须登录之后才能进入首页
-router.beforeEach(async(to,from,next)=>{
+router.beforeEach((to,from,next)=>{
   if(to.name === 'login'){
     // 如果是要去login页面，就放行
     next();
@@ -43,11 +44,16 @@ router.beforeEach(async(to,from,next)=>{
       next({name: 'login'});
     }else{
       // 如果有token，就放行，并且动态加载路由
-      // 动态加载路由：放到一个数组里面，直接遍历加载
-      await RoutesConfig.forEach(element => {
-        router.addRoute('mainbox',element)
-      });
-      next();
+      if(!store.state.isGetterRoutes){
+        store.commit("changeGetterRoutes",true);
+        // 动态加载路由：放到一个数组里面，直接遍历加载
+        RoutesConfig.forEach(element => {
+          router.addRoute('mainbox',element)
+        });
+        next({path: to.fullPath});
+      }else{
+        next();
+      }
     }
   }
 })

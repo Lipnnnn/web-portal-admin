@@ -1,5 +1,5 @@
 <template>
-  not found
+  <el-empty description="404 NotFound" />
 </template>
 
 <script>

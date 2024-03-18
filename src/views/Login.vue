@@ -35,6 +35,7 @@
 import { loadSlim } from "tsparticles-slim";
 import { reactive,ref } from "vue";
 import {useRouter} from 'vue-router'
+import axios from 'axios'
 // 定义router对象
 const router = useRouter();
 // 配置particles粒子库
@@ -138,11 +139,13 @@ const submitForm = ()=>{
     if(valid){
       // 如果校验成功
       // 2. 提交到后台
-      console.log(ruleForm);
+      axios.post('/adminapi/user/login',ruleForm).then(res=>{
+        console.log(res.data);
+      })
       // 3. 设置token
-      localStorage.setItem('token','lipn');
+      // localStorage.setItem('token','lipn');
       // 4. 跳转页面
-      router.push('/index');
+      // router.push('/index');
     }
   })
 }

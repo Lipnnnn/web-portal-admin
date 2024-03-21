@@ -51,7 +51,7 @@
             <h2 class="el-header-text-title">Lipn门户网站管理系统</h2>
           </div>
           <div class="el-header-text">
-            <span>欢迎 admin 回来</span>
+            <span>欢迎 {{ store.state.userInfo.username }} 回来</span>
             <el-dropdown>
               <span class="el-dropdown-link">
                 <el-icon color="white" size="30"><User /></el-icon>
@@ -80,8 +80,11 @@
 import { HomeFilled,Avatar,UserFilled,MessageBox,Reading,Menu,User } from '@element-plus/icons-vue';
 import {ref} from 'vue'
 import { useRoute,useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+const store = useStore();
 const route = useRoute();  // route是当前匹配到的路由对象
 const router = useRouter();  // router是整个路由器对象
+
 
 // 设置是否折叠
 let collapse = ref(false);
@@ -96,6 +99,7 @@ const handleCenter = ()=>{
 // 点击退出登录
 const handleLogout = ()=>{
   localStorage.removeItem('token');
+  store.commit('clearUserInfo');
   router.push('/login');
 }
 

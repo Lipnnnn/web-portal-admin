@@ -37,6 +37,10 @@ import { reactive,ref } from "vue";
 import {useRouter} from 'vue-router'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { useStore } from "vuex";
+
+// 定义store对象
+const store = useStore();
 
 // 定义router对象
 const router = useRouter();
@@ -148,6 +152,8 @@ const submitForm = ()=>{
           // 就不需要在这里手动设置token了
           // localStorage.setItem('token','lipn');
           // 4. 跳转页面
+          // 存储用户信息
+          store.commit('changeUserInfo',res.data.userInfo);
           router.push('/index');
         }else{
           // 登录失败

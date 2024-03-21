@@ -36,6 +36,8 @@ import { loadSlim } from "tsparticles-slim";
 import { reactive,ref } from "vue";
 import {useRouter} from 'vue-router'
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
+
 // 定义router对象
 const router = useRouter();
 // 配置particles粒子库
@@ -140,12 +142,22 @@ const submitForm = ()=>{
       // 如果校验成功
       // 2. 提交到后台
       axios.post('/adminapi/user/login',ruleForm).then(res=>{
-        console.log(res.data);
+        if(res.data.code === '0'){
+          // 登录成功
+          // 3. 设置token（已经在util/axios.config.js文件中进行了统一配置axios拦截器，每次请求都会自动带上token信息）
+          // 就不需要在这里手动设置token了
+          // localStorage.setItem('token','lipn');
+          // 4. 跳转页面
+          router.push('/index');
+        }else{
+          // 登录失败
+          ElMessage({
+            showClose: true,
+            message: '用户名密码错误',
+            type: 'error',
+          })
+        }
       })
-      // 3. 设置token
-      // localStorage.setItem('token','lipn');
-      // 4. 跳转页面
-      // router.push('/index');
     }
   })
 }

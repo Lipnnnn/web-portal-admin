@@ -48,7 +48,7 @@
         <el-header>
           <div class="el-header-text">
             <el-icon @click="isCollapse" :size="size" :color="color"><Menu /></el-icon>
-            <h2 class="el-header-text-title">Lipn门户网站管理系统</h2>
+            <h3 class="el-header-text-title">Lipn门户网站管理系统</h3>
           </div>
           <div class="el-header-text">
             <span>欢迎 {{ store.state.userInfo.username }} 回来</span>

@@ -38,7 +38,7 @@ const tips = computed(()=>{
 
 // 展示头像
 const avatarUrl = computed(()=>{
-  return store.state.userInfo.avatar?store.state.userInfo.avatar:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+  return store.state.userInfo.avatar?'http://localhost:3333'+store.state.userInfo.avatar:'https://cube.element.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
 })
 
 </script>

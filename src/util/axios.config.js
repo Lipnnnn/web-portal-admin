@@ -18,7 +18,8 @@ axios.interceptors.response.use(function(response){
 },function(error){
     const {status} = error.response;
     if(status === 401){
-        window.location.href = '#/login'
+        localStorage.removeItem("token");
+        window.location.href = '#/login';
     }
     return Promise.reject(error);
 })

@@ -106,6 +106,11 @@ const handleLogout = ()=>{
 </script>
 
 <style lang="scss" scoped>
+.el-main{
+  overflow: auto;
+  height: calc(100vh - 60px);
+}
+
 .el-aside{
   height: 100vh;
   .el-menu{

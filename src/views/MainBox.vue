@@ -17,7 +17,7 @@
               <el-icon><Avatar /></el-icon>
               <span>个人中心</span>
             </el-menu-item>
-            <el-sub-menu index="/user-manage">
+            <el-sub-menu index="/user-manage" v-if="store.state.userInfo.role === 0">
               <template #title>
                 <el-icon><UserFilled /></el-icon>
                 <span>用户管理</span>
@@ -78,13 +78,12 @@
 
 <script setup>
 import { HomeFilled,Avatar,UserFilled,MessageBox,Reading,Menu,User } from '@element-plus/icons-vue';
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import { useRoute,useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 const store = useStore();
 const route = useRoute();  // route是当前匹配到的路由对象
 const router = useRouter();  // router是整个路由器对象
-
 
 // 设置是否折叠
 let collapse = ref(false);

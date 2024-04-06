@@ -48,7 +48,8 @@ router.beforeEach((to,from,next)=>{
         store.commit("changeGetterRoutes",true);
         // 动态加载路由：放到一个数组里面，直接遍历加载
         RoutesConfig.forEach(element => {
-          router.addRoute('mainbox',element)
+          // isAdmin()方法判断是不是管理员，是管理员才添加用户管理的路由
+          isAdmin(element) && router.addRoute('mainbox',element)
         });
         next({path: to.fullPath});
       }else{
@@ -57,6 +58,15 @@ router.beforeEach((to,from,next)=>{
     }
   }
 })
+
+const isAdmin = (element)=>{
+  if(element.requireAdmin){
+    if(store.state.userInfo.role != 0){
+      return false;
+    }
+  }
+  return true;
+}
 
 
 export default router

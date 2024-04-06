@@ -9,11 +9,13 @@ const routes = [
     },
     {
         path: '/user-manage/useradd',
-        component: ()=>import('@/views/user-manage/UserAdd.vue')
+        component: ()=>import('@/views/user-manage/UserAdd.vue'),
+        requireAdmin: true
     },
     {
         path: '/user-manage/userlist',
-        component: ()=>import('@/views/user-manage/UserList.vue')
+        component: ()=>import('@/views/user-manage/UserList.vue'),
+        requireAdmin: true
     },
     {
         path: '/news-manage/newsadd',

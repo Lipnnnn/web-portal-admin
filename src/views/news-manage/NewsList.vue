@@ -36,12 +36,14 @@
             :icon="Edit"
             type="default"
             size="small"
+            @click="handleEdit(scope.row._id)"
           />
           <el-button
             circle
             :icon="Delete"
             type="danger"
             size="small"
+            @click="handleDelete(scope.row._id)"
           />
         </template>
       </el-table-column>
@@ -62,8 +64,10 @@
 import { StarFilled } from '@element-plus/icons-vue'
 import {ref,reactive, onMounted, computed} from 'vue';
 import {Star,Edit,Delete} from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus';
 import { format } from 'date-fns';
 import axios from 'axios';
+import router from '@/router';
 
 const tableData = ref([]);
 
@@ -102,6 +106,29 @@ const news = ref({});
 const handlePreview = (item)=>{
   previewNews.value = true;
   news.value = item;
+}
+
+// 删除新闻
+const handleDelete = (id)=>{
+  ElMessageBox.confirm(
+    '确定要删除吗？',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }
+  ).then(async()=>{
+    await axios.delete(`/adminapi/news/delete/${id}`);
+    await getNewsList();
+  }).catch(() => {
+      // 取消删除不给任何提示
+    })
+}
+
+// 编辑新闻
+const handleEdit = (id)=>{
+  console.log(id);
+  router.push(`/news-manage/newsedit/${id}`);
 }
 
 

@@ -26,6 +26,10 @@ const routes = [
         component: ()=>import('@/views/news-manage/NewsList.vue')
     },
     {
+        path: '/news-manage/newsedit/:id',
+        component: ()=>import('@/views/news-manage/NewsEdit.vue')
+    },
+    {
         path: '/product-manage/productadd',
         component: ()=>import('@/views/product-manage/ProductAdd.vue')
     },

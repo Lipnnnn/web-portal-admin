@@ -62,7 +62,7 @@ const ruleForm = reactive({
   category: "",
   cover: "",
   file: null,
-  isPublish: 0  // 是否发布，0表示未发布
+  isPublish: false  // 是否发布，false表示未发布
 })
 
 // 表单校验

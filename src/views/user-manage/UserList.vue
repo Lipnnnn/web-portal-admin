@@ -7,15 +7,15 @@
 
   <el-card>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="username" label="用户名" width="180" />
-      <el-table-column label="头像" width="180" >
+      <el-table-column prop="username" label="用户名"/>
+      <el-table-column label="头像">
         <template #default="scope">
           <div v-if="scope.row.avatar">
             <el-avatar :size="50" :src="'http://localhost:3333'+scope.row.avatar"></el-avatar>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="角色" width="180" >
+      <el-table-column label="角色">
         <template #default="scope">
           <el-tag v-if="scope.row.role === 0" type="danger">管理员</el-tag>
           <el-tag v-else type="success">编辑</el-tag>
@@ -26,7 +26,7 @@
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)" plain>
             编辑
           </el-button>
-          <el-dialog v-model="dialogFormVisible" title="编辑" width="500">
+          <el-dialog v-model="dialogFormVisible" title="编辑">
             <el-form
               ref="ruleFormRef"
               style="max-width: 100%"

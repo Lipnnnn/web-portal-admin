@@ -1,5 +1,5 @@
 <template>
-    还在开发中...
+  <el-empty description="开发中，敬请期待......" />
 </template>
 
 <!-- <template>

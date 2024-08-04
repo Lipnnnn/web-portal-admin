@@ -6,6 +6,7 @@ module.exports = defineConfig({
     proxy: {
       '/adminapi': {
         target: 'http://localhost:3333',
+        // target: 'http://118.89.20.214:3333',
         changeOrigin: true
       }
     }
